@@ -264,11 +264,14 @@ function getIndexOf(str, letter) {
  */
 function isContainNumber(num, digit) {
   let number = num;
+  if (number < 0) {
+    number = -number;
+  }
   while (number > 0) {
     const n = number % 10;
     if (n === digit) return true;
 
-    number = Math.floor(num / 10);
+    number = Math.floor(number / 10);
   }
   return false;
 }
