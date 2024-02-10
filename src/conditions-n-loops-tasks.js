@@ -367,6 +367,28 @@ function rotateMatrix(matrix) {
   return answer;
 }
 
+function quickSort(arr) {
+  if (arr.length < 2) {
+    return arr;
+  }
+
+  const left = [];
+  const right = [];
+  const equal = [];
+  const pivot = arr[Math.floor(Math.random() * arr.length)];
+
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else if (arr[i] > pivot) {
+      right.push(arr[i]);
+    } else {
+      equal.push(pivot);
+    }
+  }
+
+  return [...quickSort(left), ...equal, ...quickSort(right)];
+}
 /**
  * Sorts an array of numbers in ascending order in place.
  * Employ any sorting algorithm of your choice.
@@ -382,21 +404,14 @@ function rotateMatrix(matrix) {
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
 function sortByAsc(arr) {
-  const sorted = arr;
+  const answer = quickSort(arr);
+  const array = arr;
 
-  for (let i = 0; i < sorted.length - 1; i += 1) {
-    let minIndex = i;
-
-    for (let j = i + 1; j < sorted.length; j += 1) {
-      if (sorted[j] < sorted[minIndex]) {
-        minIndex = j;
-      }
-    }
-    if (i !== minIndex) {
-      [sorted[i], sorted[minIndex]] = [sorted[minIndex], sorted[i]];
-    }
+  for (let i = 0; i < answer.length; i += 1) {
+    array[i] = answer[i];
   }
-  return sorted;
+
+  return arr;
 }
 
 /**
